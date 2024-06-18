@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for navigation */
+        header {
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        nav a.active {
+            background-color: #28a745; /* Green color for active tab */
+        }
+
+        /* Styles for order history */
+        #order-history {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .order-item {
+            border: 1px solid #ddd;
+            padding: 1em;
+            margin: 1em;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food Ordering App</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="food.html">Food</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="order_history.html" class="active">Order History</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Order History</h2>
+        <div id="order-history"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Food Ordering App</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            displayOrderHistory();
+        });
+    </script>
+</body>
+</html>

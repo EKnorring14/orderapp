@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Ordering App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for navigation and search bar */
+        header {
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        nav a.active {
+            background-color: #28a745; /* Green color for active tab */
+        }
+
+        #search-input {
+            margin-top: 10px;
+            padding: 10px;
+            width: 300px; /* Adjust width as needed */
+            box-sizing: border-box;
+        }
+
+        #search-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #28a745; /* Green color for search button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #search-button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        /* Styles for search results */
+        #search-results {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 1em;
+            margin: 1em;
+            background-color: white;
+            text-align: center;
+            width: 200px; /* Adjust width as needed */
+        }
+
+        .product-card img {
+            max-width: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Styles for cart display */
+        #cart {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        #cart-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #total-price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food Ordering App</h1>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="food.html">Food</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="order_history.html">Order History</a>
+            <a href="login.html">Login</a>
+        </nav>
+        <input type="text" id="search-input" placeholder="Search...">
+        <button id="search-button" onclick="searchProducts()">Search</button>
+    </header>
+
+    <!-- Search results container -->
+    <div id="search-results"></div>
+
+    <!-- Cart display section -->
+    <div id="cart">
+        <h2 id="cart-title">Your Cart</h2>
+        <div id="cart-items"></div>
+        <div id="total-price"></div>
+    </div>
+    <button onclick="goToCheckout()">Go to Checkout</button>
+
+    <footer>
+        <p>&copy; 2024 Food Ordering App</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            //const strengthSpan = document.getElementById('password-strength');
+
+
+            if (password != confirmPassword) {
+                alert('Passwords do not match')
+                return;
+            }
 
             // Check password strength before allowing registration
             if (!isStrongPassword(password)) {
@@ -16,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const users = JSON.parse(localStorage.getItem('users')) || [];
             users.push({ username, password });
+
+            if (users.find(user => username === username)) {
+                alert('Username already exists. Please choose a different username.');
+                return;
+            }
+
             localStorage.setItem('users', JSON.stringify(users));
 
             alert('Registration successful!');

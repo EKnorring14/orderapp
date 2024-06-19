@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles can be added here */
+        #password-strength {
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -14,8 +21,11 @@
         <form id="register-form">
             <label for="username">Username:</label>
             <input type="text" id="username" required>
+            <br><br>
             <label for="password">Password:</label>
-            <input type="password" id="password" required>
+            <input type="password" id="password" required onkeyup="validatePassword()">
+            <span id="password-strength"></span>
+            <br><br>
             <button type="submit">Register</button>
         </form>
     </main>
@@ -23,5 +33,23 @@
         <p>&copy; 2024 Food Ordering App</p>
     </footer>
     <script src="auth.js"></script>
+    <script>
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const strengthSpan = document.getElementById('password-strength');
+
+            // Check password strength and update feedback
+            if (password.length < 8) {
+                strengthSpan.textContent = 'Password should be at least 8 characters long.';
+                strengthSpan.style.color = 'red';
+            } else if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+                strengthSpan.textContent = 'Password should include uppercase, lowercase, and numeric characters.';
+                strengthSpan.style.color = 'orange';
+            } else {
+                strengthSpan.textContent = 'Strong password!';
+                strengthSpan.style.color = 'green';
+            }
+        }
+    </script>
 </body>
 </html>

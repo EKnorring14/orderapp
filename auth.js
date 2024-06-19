@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
+            // Check password strength before allowing registration
+            if (!isStrongPassword(password)) {
+                alert('Password does not meet strength requirements.');
+                return;
+            }
+
             const users = JSON.parse(localStorage.getItem('users')) || [];
             users.push({ username, password });
             localStorage.setItem('users', JSON.stringify(users));
@@ -50,5 +56,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Call checkLogin on pages that require authentication
     if (document.getElementById('login-page')) { // Make sure to have an identifier on the login page
         checkLogin();
+    }
+
+    // Function to check if a password is strong
+    function isStrongPassword(password) {
+        // Customize your password strength criteria here
+        return password.length >= 8 &&
+            /[A-Z]/.test(password) &&
+            /[a-z]/.test(password) &&
+            /[0-9]/.test(password);
     }
 });

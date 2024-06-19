@@ -147,6 +147,17 @@ function displayOrderHistory() {
     }
 }
 
+function clearOrderHistory() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const orderHistoryContainer = document.getElementById('order-history');
+    orderHistoryContainer.innerHTML = '';
+}
+
 // Call updateCartUI() and displayOrderHistory() on page load
 document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();

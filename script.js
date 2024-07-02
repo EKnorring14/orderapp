@@ -4,6 +4,7 @@
 const products = [
     { id: 1, name: 'Burger', price: 5.99 },
     { id: 2, name: 'Soda', price: 2.99 },
+    { id: 3, name: 'Fries', price: 2.99 },
     // Add more products as needed
 ];
 
@@ -197,6 +198,8 @@ function displayOrderHistory() {
     }
 }
 
+
+// Function to clear order history and recommendations
 function clearOrderHistory() {
     const loggedInUser = localStorage.getItem('loggedInUser');
     if (!loggedInUser) {
@@ -204,8 +207,9 @@ function clearOrderHistory() {
         return;
     }
 
-    const orderHistoryContainer = document.getElementById('order-history');
-    orderHistoryContainer.innerHTML = '';
+    localStorage.removeItem('orderHistory');
+    localStorage.removeItem('recommendations');
+    displayOrderHistory();
 }
 
 // Function to navigate back to home page

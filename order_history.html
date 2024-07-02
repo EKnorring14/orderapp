@@ -38,20 +38,21 @@
         /* Styles for order history */
         #order-history {
             margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
             text-align: center;
         }
 
-        .order-item {
-            border: 1px solid #ddd;
-            padding: 1em;
-            margin: 1em;
-            background-color: white;
+        #order-history-title {
+            font-weight: bold;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Alltown App</h1>
+        <h1>Order History</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="food.html">Food</a>
@@ -61,22 +62,16 @@
             <a href="login.html">Login</a>
         </nav>
     </header>
-
     <main>
-        <h2>Order History</h2>
-        <div id="order-history"></div>
+        <div id="order-history">
+            <h2 id="order-history-title">Your Order History</h2>
+            <div id="order-history-items"></div>
+        </div>
+        <button onclick="clearOrderHistory()">Clear Order History and Recommendations</button>
     </main>
-
-    <input id="clearhistory" type="button" value="Clear History" onclick="clearOrderHistory();" />
-
     <footer>
-        <p>&copy; 2024 Global Partners</p>
+        <p>&copy; 2024 Food Ordering App</p>
     </footer>
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            displayOrderHistory();
-        });
-    </script>
 </body>
 </html>

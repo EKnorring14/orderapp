@@ -56,6 +56,31 @@
         #total-price {
             font-weight: bold;
         }
+
+        /* Styles for recommendations */
+        #recommendations {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        #recommendations-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #recommendations-list {
+            margin-bottom: 10px;
+        }
+
+        .recommendation-item {
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -71,13 +96,17 @@
         </nav>
     </header>
     <main>
-        <!-- Checkout form and details -->
-
         <!-- Cart display section -->
         <div id="cart">
             <h2 id="cart-title">Your Cart</h2>
             <div id="cart-items"></div>
             <div id="total-price"></div>
+        </div>
+
+        <!-- Recommendations section -->
+        <div id="recommendations">
+            <h2 id="recommendations-title">Recommended for You</h2>
+            <div id="recommendations-list"></div>
         </div>
 
         <button onclick="placeOrder()">Place Order</button>

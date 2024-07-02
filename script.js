@@ -81,11 +81,61 @@ function updateCartUI() {
             totalPriceElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
         }
     }
+
+    // Update recommendations based on order history
+    updateRecommendations();
 }
 
 // Function to generate a unique order ID
 function generateOrderId() {
     return Math.floor(Math.random() * 1000000);
+}
+
+// Function to update recommendations based on order history
+function updateRecommendations() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        return;
+    }
+
+    const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || {};
+    const userOrders = orderHistory[loggedInUser] || [];
+
+    const recommendationsContainer = document.getElementById('recommendations-list');
+    if (recommendationsContainer) {
+        recommendationsContainer.innerHTML = ''; // Clear previous recommendations
+
+        // Generate recommendations based on order history
+        const recommendedProducts = generateRecommendations(userOrders);
+        recommendedProducts.forEach(product => {
+            const recommendationItem = document.createElement('div');
+            recommendationItem.className = 'recommendation-item';
+            recommendationItem.textContent = `${product.name} - $${product.price.toFixed(2)}`;
+            recommendationsContainer.appendChild(recommendationItem);
+        });
+    }
+}
+
+// Function to generate recommendations based on order history
+function generateRecommendations(userOrders) {
+    // Example: Generate recommendations based on the most frequently ordered items
+    const itemFrequencyMap = {};
+    userOrders.forEach(order => {
+        order.forEach(product => {
+            const productId = product.id;
+            if (itemFrequencyMap[productId]) {
+                itemFrequencyMap[productId]++;
+            } else {
+                itemFrequencyMap[productId] = 1;
+            }
+        });
+    });
+
+    // Sort items by frequency and return top recommendations
+    const sortedItems = Object.keys(itemFrequencyMap).sort((a, b) => itemFrequencyMap[b] - itemFrequencyMap[a]);
+    const topRecommendations = sortedItems.slice(0, 3).map(productId => products.find(product => product.id === parseInt(productId)));
+
+    return topRecommendations;
 }
 
 // Function to place order (clears the cart and saves order history)
@@ -158,15 +208,6 @@ function clearOrderHistory() {
     orderHistoryContainer.innerHTML = '';
 }
 
-// Call updateCartUI() and displayOrderHistory() on page load
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartUI();
-    if (document.getElementById('order-history')) {
-        displayOrderHistory();
-    }
-});
-
-
 // Function to navigate back to home page
 function goToHome() {
     window.location.href = 'index.html';
@@ -199,10 +240,13 @@ function searchProducts() {
     });
 }
 
-// Call updateCartUI() on page load
+// Call updateCartUI(), displayOrderHistory(), and updateRecommendations() on page load
 document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
     if (document.getElementById('order-history')) {
         displayOrderHistory();
+    }
+    if (document.getElementById('recommendations-list')) {
+        updateRecommendations();
     }
 });
